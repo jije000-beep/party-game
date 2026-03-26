@@ -12,12 +12,30 @@ const Setup = {
 
     const game = App.state.currentGame;
     const penaltyLabel = document.getElementById('penalty-label');
-    if (game === 'ladder') {
-      penaltyLabel.textContent = '결과 (하단) 설정';
-    } else if (game === 'lots') {
-      penaltyLabel.textContent = '카드 내용 설정';
+    const namesToggle = document.getElementById('toggle-names');
+    const namesSection = document.getElementById('section-names');
+
+    const countLabel = document.getElementById('count-label');
+    const hint = document.getElementById('setup-hint');
+
+    if (game === 'roulette') {
+      penaltyLabel.textContent = '룰렛 항목 설정';
+      countLabel.textContent = '룰렛 칸 수';
+      hint.textContent = '1칸만 당첨! 나머지는 꽝';
+      namesToggle.style.display = 'none';
+      namesSection.style.display = 'none';
     } else {
-      penaltyLabel.textContent = '벌칙 / 보상 설정';
+      countLabel.textContent = '참가자 수';
+      hint.textContent = '1명만 당첨! 나머지는 꽝';
+      namesToggle.style.display = '';
+      namesSection.style.display = '';
+      if (game === 'ladder') {
+        penaltyLabel.textContent = '결과 (하단) 설정';
+      } else if (game === 'lots') {
+        penaltyLabel.textContent = '카드 내용 설정';
+      } else {
+        penaltyLabel.textContent = '벌칙 / 보상 설정';
+      }
     }
 
     // Close all sections visually

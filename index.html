@@ -43,13 +43,13 @@
       </div>
       <div class="setup-container">
         <div class="setup-section setup-section--count">
-          <label class="setup-label">참가자 수</label>
+          <label class="setup-label" id="count-label">참가자 수</label>
           <div class="stepper">
             <button class="stepper__btn" onclick="Setup.changeCount(-1)">−</button>
             <span class="stepper__value" id="player-count">4</span>
             <button class="stepper__btn" onclick="Setup.changeCount(1)">+</button>
           </div>
-          <p class="setup-hint">1명만 당첨! 나머지는 꽝</p>
+          <p class="setup-hint" id="setup-hint">1명만 당첨! 나머지는 꽝</p>
         </div>
 
         <button class="btn-primary btn-start" onclick="Setup.startGame()">바로 시작!</button>
