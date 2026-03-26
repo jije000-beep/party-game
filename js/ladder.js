@@ -255,7 +255,7 @@ const Ladder = {
     // Animate path
     let step = 1;
     const totalSteps = path.length;
-    const stepDuration = 600 / totalSteps;
+    const stepDuration = 400 / totalSteps;
 
     const animate = () => {
       this.draw();
