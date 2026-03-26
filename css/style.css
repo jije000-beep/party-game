@@ -551,10 +551,10 @@ body {
 
 .ladder-label--top {
   cursor: pointer;
-  background: #5C3D2E;
+  background: #C4956A;
   color: #fff;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  border: 2px solid #5C3D2E;
+  border: 2px solid #C4956A;
   border-bottom: none;
   transition: background 0.15s ease, transform 0.1s ease;
   margin: 0 3px;
@@ -563,7 +563,7 @@ body {
 }
 
 .ladder-label--top:active {
-  background: #C4956A;
+  background: #D4AC82;
   transform: scale(0.95);
 }
 
@@ -573,9 +573,9 @@ body {
 }
 
 .ladder-label--bottom {
-  background: #F2E0CE;
+  background: #FFF3E6;
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-  border: 2px solid #5C3D2E;
+  border: 2px solid #C4956A;
   border-top: none;
   margin: 0 3px;
   color: transparent;

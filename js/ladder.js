@@ -14,7 +14,7 @@ const Ladder = {
   playerColors: ['#FFD233', '#7ED957', '#FF6B6B', '#5CE1E6', '#FF66C4', '#FFA53E', '#B07CFF', '#38B6FF', '#FF914D', '#C77DFF'],
 
   // Ladder style
-  ladderColor: '#A07860',
+  ladderColor: '#C4A882',
   ladderLineWidth: 6,
   bridgeLineWidth: 6,
   traceLineWidth: 7,
