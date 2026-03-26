@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>파티 게임</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 홈 화면 -->
+    <div id="screen-home" class="screen active">
+      <div class="home-container">
+        <h1 class="home-title">파티 게임</h1>
+        <p class="home-subtitle">친구들과 함께 즐기는 내기 게임</p>
+        <div class="game-cards">
+          <button class="game-card game-card--roulette" onclick="App.selectGame('roulette')">
+            <span class="game-card__icon">🎡</span>
+            <span class="game-card__name">룰렛</span>
+            <span class="game-card__desc">돌려돌려~</span>
+          </button>
+          <button class="game-card game-card--ladder" onclick="App.selectGame('ladder')">
+            <span class="game-card__icon">🪜</span>
+            <span class="game-card__name">사다리타기</span>
+            <span class="game-card__desc">어디로 갈까?</span>
+          </button>
+          <button class="game-card game-card--lots" onclick="App.selectGame('lots')">
+            <span class="game-card__icon">🎴</span>
+            <span class="game-card__name">제비뽑기</span>
+            <span class="game-card__desc">운명의 카드!</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 설정 화면 -->
+    <div id="screen-setup" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.navigate('screen-home')">← 뒤로</button>
+        <h2 id="setup-title">게임 설정</h2>
+      </div>
+      <div class="setup-container">
+        <div class="setup-section setup-section--count">
+          <label class="setup-label">참가자 수</label>
+          <div class="stepper">
+            <button class="stepper__btn" onclick="Setup.changeCount(-1)">−</button>
+            <span class="stepper__value" id="player-count">4</span>
+            <button class="stepper__btn" onclick="Setup.changeCount(1)">+</button>
+          </div>
+          <p class="setup-hint">1명만 당첨! 나머지는 꽝</p>
+        </div>
+
+        <button class="btn-primary btn-start" onclick="Setup.startGame()">바로 시작!</button>
+
+        <div class="setup-divider">
+          <span>또는 직접 설정</span>
+        </div>
+
+        <button class="setup-toggle" id="toggle-names" onclick="Setup.toggleSection('names')">
+          <span>참가자 이름 설정</span>
+          <span class="setup-toggle__arrow" id="arrow-names">▼</span>
+        </button>
+        <div class="setup-collapsible" id="section-names">
+          <div id="player-inputs" class="input-list"></div>
+        </div>
+
+        <button class="setup-toggle" id="toggle-penalties" onclick="Setup.toggleSection('penalties')">
+          <span id="penalty-label">벌칙 / 보상 설정</span>
+          <span class="setup-toggle__arrow" id="arrow-penalties">▼</span>
+        </button>
+        <div class="setup-collapsible" id="section-penalties">
+          <div id="penalty-inputs" class="input-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 룰렛 화면 -->
+    <div id="screen-roulette" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.navigate('screen-home')">← 뒤로</button>
+        <h2>룰렛</h2>
+      </div>
+      <div class="roulette-container">
+        <div class="roulette-wrapper">
+          <div class="roulette-pointer"></div>
+          <canvas id="roulette-canvas"></canvas>
+        </div>
+        <button class="btn-primary btn-spin" id="btn-spin" onclick="Roulette.spin()">탭하여 돌리기!</button>
+        <div class="result-display" id="roulette-result"></div>
+      </div>
+    </div>
+
+    <!-- 사다리타기 화면 -->
+    <div id="screen-ladder" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.navigate('screen-home')">← 뒤로</button>
+        <h2>사다리타기</h2>
+      </div>
+      <div class="ladder-container">
+        <div class="ladder-top-labels" id="ladder-top"></div>
+        <canvas id="ladder-canvas"></canvas>
+        <div class="ladder-bottom-labels" id="ladder-bottom"></div>
+        <p class="ladder-hint" id="ladder-hint">위의 이름을 탭하여 시작!</p>
+        <button class="btn-primary btn-ladder-all" id="btn-ladder-all" onclick="Ladder.revealAll()">전체 공개</button>
+      </div>
+    </div>
+
+    <!-- 제비뽑기 화면 -->
+    <div id="screen-lots" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.navigate('screen-home')">← 뒤로</button>
+        <h2>제비뽑기</h2>
+      </div>
+      <div class="lots-container">
+        <div class="lots-turn" id="lots-turn">카드를 골라주세요!</div>
+        <div class="lots-grid" id="lots-grid"></div>
+        <div class="lots-status" id="lots-status"></div>
+      </div>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div id="screen-result" class="screen">
+      <div class="result-container">
+        <h2 class="result-title">결과</h2>
+        <div id="result-list" class="result-list"></div>
+        <div class="result-actions">
+          <button class="btn-primary" onclick="App.replay()">다시 하기</button>
+          <button class="btn-secondary" onclick="App.navigate('screen-home')">다른 게임</button>
+          <button class="btn-ghost" onclick="App.resetAll()">처음으로</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/setup.js"></script>
+  <script src="js/roulette.js"></script>
+  <script src="js/ladder.js"></script>
+  <script src="js/lots.js"></script>
+</body>
+</html>
