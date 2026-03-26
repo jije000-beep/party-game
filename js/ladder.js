@@ -34,8 +34,8 @@ const Ladder = {
     this.resizeCanvas();
     this.draw();
 
-    document.getElementById('ladder-hint').style.display = '';
-    document.getElementById('btn-ladder-all').style.display = '';
+    document.getElementById('ladder-hint').style.visibility = '';
+    document.getElementById('btn-ladder-all').style.visibility = '';
   },
 
   generateBridges() {
@@ -277,8 +277,8 @@ const Ladder = {
 
         if (resultText === '당첨!') {
           this.stopGame = true;
-          document.getElementById('ladder-hint').style.display = 'none';
-          document.getElementById('btn-ladder-all').style.display = 'none';
+          document.getElementById('ladder-hint').style.visibility = 'hidden';
+          document.getElementById('btn-ladder-all').style.visibility = 'hidden';
           setTimeout(() => {
             App.showResult([{
               player: this.topLabels[col],
@@ -289,8 +289,8 @@ const Ladder = {
         }
 
         if (this.tracedCols.size === this.columns) {
-          document.getElementById('ladder-hint').style.display = 'none';
-          document.getElementById('btn-ladder-all').style.display = 'none';
+          document.getElementById('ladder-hint').style.visibility = 'hidden';
+          document.getElementById('btn-ladder-all').style.visibility = 'hidden';
           setTimeout(() => this.showAllResults(), 500);
         }
       }
