@@ -24,6 +24,12 @@ const Setup = {
       hint.textContent = '1칸만 당첨! 나머지는 꽝';
       namesToggle.style.display = 'none';
       namesSection.style.display = 'none';
+    } else if (game === 'lots') {
+      penaltyLabel.textContent = '카드 내용 설정';
+      countLabel.textContent = '카드 수';
+      hint.textContent = '1장만 당첨! 나머지는 꽝';
+      namesToggle.style.display = 'none';
+      namesSection.style.display = 'none';
     } else {
       countLabel.textContent = '참가자 수';
       hint.textContent = '1명만 당첨! 나머지는 꽝';
@@ -31,8 +37,6 @@ const Setup = {
       namesSection.style.display = '';
       if (game === 'ladder') {
         penaltyLabel.textContent = '결과 (하단) 설정';
-      } else if (game === 'lots') {
-        penaltyLabel.textContent = '카드 내용 설정';
       } else {
         penaltyLabel.textContent = '벌칙 / 보상 설정';
       }
